@@ -1,0 +1,37 @@
+groups:
+- neurodata_type_def: FRET
+  neurodata_type_inc: NWBDataInterface
+  doc: type for storing time-varying FRET data
+  attributes:
+  - name: excitation_lambda
+    dtype: float
+    doc: Excitation wavelength in nm.
+  - name: fluorophore_donor
+    dtype: text
+    doc: Fluorophore of donor
+  - name: fluorophore_acceptor
+    dtype: text
+    doc: Fluorophore of acceptor
+  - name: location
+    dtype: text
+    doc: Location of imaging field.
+    required: false
+  groups:
+  - name: data_donor
+    neurodata_type_inc: ImageSeries
+    doc: Fluorescence data from donor.
+  - name: data_acceptor
+    neurodata_type_inc: ImageSeries
+    doc: Fluorescence data from acceptor.
+  - name: optical_channel_donor
+    neurodata_type_inc: OpticalChannel
+    doc: Group storing channel specific data
+    quantity: '?'
+  - name: optical_channel_acceptor
+    neurodata_type_inc: OpticalChannel
+    doc: Group storing channel specific data
+    quantity: '?'
+  links:
+  - name: device
+    target_type: Device
+    doc: The device that was used to record.

@@ -2,11 +2,12 @@ namespaces:
 - author: Luiz Tauffer and Ben Dichter
   contact: ben.dichter@gmail.com
   doc: type for storing time-varying FRET data
-  name: ndx-fretseries
+  name: ndx-fret
   schema:
   - namespace: core
     neurodata_types:
     - NWBDataInterface
+    - ImageSeries
     - OpticalChannel
-  - source: ndx-fretseries.extensions.yaml
+  - source: ndx-fret.extensions.yaml
   version: 0.0.1

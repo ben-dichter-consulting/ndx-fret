@@ -6,9 +6,9 @@ from setuptools import setup, find_packages
 from shutil import copy2
 
 setup_args = {
-    'name': 'ndx-fretseries',
+    'name': 'ndx-fret',
     'version': '0.0.1',
-    'description': 'FRETSeries',
+    'description': 'FRET',
     'author': 'Luiz Tauffer and Ben Dichter',
     'author_email': 'ben.dichter@gmail.com',
     'url': '',
@@ -17,8 +17,8 @@ setup_args = {
     'packages': find_packages('src/pynwb'),
     'package_dir': {'': 'src/pynwb'},
     'package_data': {'ndx_fretseries': [
-        'spec/ndx-fretseries.namespace.yaml',
-        'spec/ndx-fretseries.extensions.yaml',
+        'spec/ndx-fret.namespace.yaml',
+        'spec/ndx-fret.extensions.yaml',
     ]},
     'classifiers': [
         "Intended Audience :: Developers",
@@ -29,10 +29,10 @@ setup_args = {
 
 
 def _copy_spec_files(project_dir):
-    ns_path = os.path.join(project_dir, 'spec', 'ndx-fretseries.namespace.yaml')
-    ext_path = os.path.join(project_dir, 'spec', 'ndx-fretseries.extensions.yaml')
+    ns_path = os.path.join(project_dir, 'spec', 'ndx-fret.namespace.yaml')
+    ext_path = os.path.join(project_dir, 'spec', 'ndx-fret.extensions.yaml')
 
-    dst_dir = os.path.join(project_dir, 'src', 'pynwb', 'ndx_fretseries', 'spec')
+    dst_dir = os.path.join(project_dir, 'src', 'pynwb', 'ndx_fret', 'spec')
     if not os.path.exists(dst_dir):
         os.mkdir(dst_dir)
 

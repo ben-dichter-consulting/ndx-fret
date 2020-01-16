@@ -1,7 +1,8 @@
 from pynwb import NWBFile, NWBHDF5IO, ProcessingModule
 from pynwb.device import Device
 from pynwb.ophys import OpticalChannel
-from ndx_fretseries import FRETSeries
+from pynwb.image import ImageSeries
+from ndx_fret import FRET
 
 from datetime import datetime
 import numpy as np
@@ -31,13 +32,24 @@ opt_ch_a = OpticalChannel(
     emission_lambda=500.
 )
 
-# Create FRET series
-data_donor = np.random.randn(100, 10, 10)
-data_acceptor = np.random.randn(100, 10, 10)
+# Create FRET
+data_donor = ImageSeries(
+    name='ImageSeries_donor',
+    description='',
+    data=np.random.randn(100, 10, 10),
+    rate=60.,
+    unit='',
+)
+data_acceptor = ImageSeries(
+    name='ImageSeries_acceptor',
+    description='',
+    data=np.random.randn(100, 10, 10),
+    rate=60.,
+    unit='',
+)
 
-fret = FRETSeries(
-    name='FRETSeries',
-    #description='',
+fret = FRET(
+    name='FRET',
     excitation_lambda=482.,
     device=device,
     optical_channel_donor=opt_ch_d,
@@ -46,18 +58,16 @@ fret = FRETSeries(
     fluorophore_acceptor='mKate2',
     data_donor=data_donor,
     data_acceptor=data_acceptor,
-    rate=60.,
 )
-
 ophys_module.add(fret)
-print('--- 1 ---')
+print(nwb)
 
 # Write nwb file
-with NWBHDF5IO('test_fretseries.nwb', 'w') as io:
+with NWBHDF5IO('test_fret.nwb', 'w') as io:
     io.write(nwb)
-    print('--- 2 ---')
+    print('NWB file written')
 
 # Read nwb file and check its content
-with NWBHDF5IO('test_fretseries.nwb', 'r', load_namespaces=True) as io:
+with NWBHDF5IO('test_fret.nwb', 'r', load_namespaces=True) as io:
     nwb = io.read()
     print(nwb)
