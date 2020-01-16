@@ -78,9 +78,11 @@ groups:
   - name: optical_channel_donor
     neurodata_type_inc: OpticalChannel
     doc: Group storing channel specific data
+    quantity: '?'
   - name: optical_channel_acceptor
     neurodata_type_inc: OpticalChannel
     doc: Group storing channel specific data
+    quantity: '?'
   links:
   - name: device
     target_type: Device

@@ -97,14 +97,14 @@ def main():
     FRETSeries.add_group(
         name='optical_channel_donor',
         doc='Group storing channel specific data',
-        #neurodata_type_def='OpticalChannelDonor',
         neurodata_type_inc='OpticalChannel',
+        quantity='?'
     )
     FRETSeries.add_group(
         name='optical_channel_acceptor',
         doc='Group storing channel specific data',
-        #neurodata_type_def='OpticalChannelAcceptor',
         neurodata_type_inc='OpticalChannel',
+        quantity='?'
     )
     FRETSeries.add_link(
         name='device',
