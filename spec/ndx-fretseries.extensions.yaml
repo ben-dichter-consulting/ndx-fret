@@ -1,0 +1,80 @@
+groups:
+- neurodata_type_def: FRETSeries
+  neurodata_type_inc: TimeSeries
+  doc: type for storing time-varying FRET data
+  attributes:
+  - name: excitation_lambda
+    dtype: float
+    doc: Excitation wavelength in nm.
+  - name: fluorophore_donor
+    dtype: text
+    doc: Fluorophore of donor
+  - name: fluorophore_acceptor
+    dtype: text
+    doc: Fluorophore of acceptor
+  - name: Location
+    dtype: text
+    doc: Location of imaging field.
+    required: false
+  - name: Unit
+    dtype: text
+    doc: The base unit of measurement (should be SI unit).
+    required: false
+  - name: Conversion
+    dtype: float
+    doc: Scalar to multiply each element in data to convert it to the specified unit.
+    required: false
+  - name: rate
+    dtype: float
+    doc: Rate images are acquired, in Hz.
+  - name: starting_time
+    dtype: float
+    doc: The timestamp of the first sample.
+    required: false
+  datasets:
+  - name: data_donor
+    dtype: float
+    dims:
+    - - time
+    - - time
+      - x
+    - - time
+      - x
+      - y
+    shape:
+    - - null
+    - - null
+      - null
+    - - null
+      - null
+      - null
+    doc: Fluorescence data from donor.
+  - name: data_acceptor
+    dtype: float
+    dims:
+    - - time
+    - - time
+      - x
+    - - time
+      - x
+      - y
+    shape:
+    - - null
+    - - null
+      - null
+    - - null
+      - null
+      - null
+    doc: Fluorescence data from acceptor.
+  - name: timestamps
+    dtype: float
+    dims:
+    - timestamps
+    shape:
+    - null
+    doc: Timestamps for samples stored in data.
+    quantity: '?'
+  links:
+  - name: device
+    target_type: Device
+    doc: The device that was used to record.
