@@ -6,6 +6,7 @@ namespaces:
   schema:
   - namespace: core
     neurodata_types:
-    - TimeSeries
+    - NWBDataInterface
+    - OpticalChannel
   - source: ndx-fretseries.extensions.yaml
   version: 0.0.1

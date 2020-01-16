@@ -1,6 +1,6 @@
 groups:
 - neurodata_type_def: FRETSeries
-  neurodata_type_inc: TimeSeries
+  neurodata_type_inc: NWBDataInterface
   doc: type for storing time-varying FRET data
   attributes:
   - name: excitation_lambda
@@ -74,6 +74,13 @@ groups:
     - null
     doc: Timestamps for samples stored in data.
     quantity: '?'
+  groups:
+  - name: optical_channel_donor
+    neurodata_type_inc: OpticalChannel
+    doc: Group storing channel specific data
+  - name: optical_channel_acceptor
+    neurodata_type_inc: OpticalChannel
+    doc: Group storing channel specific data
   links:
   - name: device
     target_type: Device

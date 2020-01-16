@@ -12,6 +12,13 @@ nwb = NWBFile('session_description', 'identifier', datetime.now().astimezone())
 device = Device(name='Device')
 nwb.add_device(device)
 
+# Ophys processing module
+ophys_module = ProcessingModule(
+    name='Ophys',
+    description='contains optical physiology processed data.',
+)
+nwb.add_processing_module(ophys_module)
+
 # Create optical channels
 opt_ch_d = OpticalChannel(
     name='OpticalChannel_donor',
@@ -24,24 +31,17 @@ opt_ch_a = OpticalChannel(
     emission_lambda=500.
 )
 
-# Ophys processing module
-ophys_module = ProcessingModule(
-    name='Ophys',
-    description='contains optical physiology processed data.',
-)
-nwb.add_processing_module(ophys_module)
-
 # Create FRET series
 data_donor = np.random.randn(100, 10, 10)
 data_acceptor = np.random.randn(100, 10, 10)
 
 fret = FRETSeries(
     name='FRETSeries',
-    description='',
+    #description='',
     excitation_lambda=482.,
     device=device,
-    # optical_channel_donor=opt_ch_d,
-    # optical_channel_acceptor=opt_ch_a,
+    optical_channel_donor=opt_ch_d,
+    optical_channel_acceptor=opt_ch_a,
     fluorophore_donor='mCitrine',
     fluorophore_acceptor='mKate2',
     data_donor=data_donor,

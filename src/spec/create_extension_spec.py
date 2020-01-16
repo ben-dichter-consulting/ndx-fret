@@ -8,10 +8,13 @@ def main():
                                      author='Luiz Tauffer and Ben Dichter',
                                      contact='ben.dichter@gmail.com')
 
+    ns_builder.include_type('NWBDataInterface', namespace='core')
+    ns_builder.include_type('OpticalChannel', namespace='core')
+
     FRETSeries = NWBGroupSpec(
         doc='type for storing time-varying FRET data',
         neurodata_type_def='FRETSeries',
-        neurodata_type_inc='TimeSeries',
+        neurodata_type_inc='NWBDataInterface',
         )
 
     FRETSeries.add_attribute(
@@ -91,20 +94,18 @@ def main():
         quantity='?'
     )
 
-    # FRETSeries.add_group(
-    #     name='optical_channel_donor',
-    #     doc='Group storing channel specific data',
-    #     linkable=True,
-    #     neurodata_type_def='OpticalChannelDonor',
-    #     neurodata_type_inc='OpticalChannel',
-    # )
-    # FRETSeries.add_group(
-    #     name='optical_channel_acceptor',
-    #     doc='Group storing channel specific data',
-    #     linkable=True,
-    #     neurodata_type_def='OpticalChannelAcceptor',
-    #     neurodata_type_inc='OpticalChannel',
-    # )
+    FRETSeries.add_group(
+        name='optical_channel_donor',
+        doc='Group storing channel specific data',
+        #neurodata_type_def='OpticalChannelDonor',
+        neurodata_type_inc='OpticalChannel',
+    )
+    FRETSeries.add_group(
+        name='optical_channel_acceptor',
+        doc='Group storing channel specific data',
+        #neurodata_type_def='OpticalChannelAcceptor',
+        neurodata_type_inc='OpticalChannel',
+    )
     FRETSeries.add_link(
         name='device',
         doc='The device that was used to record.',
@@ -112,8 +113,6 @@ def main():
     )
 
     new_data_types = [FRETSeries]
-
-    ns_builder.include_type('TimeSeries', namespace='core')
 
     export_spec(ns_builder, new_data_types)
 
