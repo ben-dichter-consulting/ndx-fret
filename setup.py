@@ -16,7 +16,7 @@ setup_args = {
     'install_requires': ['pynwb'],
     'packages': find_packages('src/pynwb'),
     'package_dir': {'': 'src/pynwb'},
-    'package_data': {'ndx_fretseries': [
+    'package_data': {'ndx_fret': [
         'spec/ndx-fret.namespace.yaml',
         'spec/ndx-fret.extensions.yaml',
     ]},
