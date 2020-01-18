@@ -21,19 +21,19 @@ nwb.add_processing_module(ophys_module)
 
 # Create optical channels
 opt_ch_d = OpticalChannel(
-    name='OpticalChannel_donor',
+    name='optical_channel',
     description='',
     emission_lambda=450.
 )
 opt_ch_a = OpticalChannel(
-    name='OpticalChannel_acceptor',
+    name='optical_channel',
     description='',
     emission_lambda=500.
 )
 
 # Create FRET
 fs_d = FRETSeries(
-    name='FRETSeries_donor',
+    name='donor',
     fluorophore='mCitrine',
     optical_channel=opt_ch_d,
     device=device,
@@ -44,7 +44,7 @@ fs_d = FRETSeries(
     unit='',
 )
 fs_a = FRETSeries(
-    name='FRETSeries_acceptor',
+    name='acceptor',
     fluorophore='mKate2',
     optical_channel=opt_ch_a,
     device=device,
