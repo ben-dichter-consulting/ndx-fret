@@ -1,7 +1,6 @@
 from pynwb import NWBFile, NWBHDF5IO, ProcessingModule
 from pynwb.device import Device
 from pynwb.ophys import OpticalChannel
-from pynwb.image import ImageSeries
 from ndx_fret import FRET, FRETSeries
 
 from datetime import datetime
@@ -33,24 +32,12 @@ opt_ch_a = OpticalChannel(
 )
 
 # Create FRET
-data_donor = ImageSeries(
-    name='ImageSeries_donor',
-    description='',
-    data=np.random.randn(100, 10, 10),
-    rate=60.,
-    unit='',
-)
 fs_d = FRETSeries(
     name='FRETSeries_donor',
     fluorophore='mCitrine',
     optical_channel=opt_ch_d,
     device=device,
-    data=data_donor,
-    emission_lambda=0.0
-)
-
-data_acceptor = ImageSeries(
-    name='ImageSeries_acceptor',
+    emission_lambda=0.0,
     description='',
     data=np.random.randn(100, 10, 10),
     rate=60.,
@@ -61,8 +48,11 @@ fs_a = FRETSeries(
     fluorophore='mKate2',
     optical_channel=opt_ch_a,
     device=device,
-    data=data_acceptor,
-    emission_lambda=0.0
+    emission_lambda=0.0,
+    description='',
+    data=np.random.randn(100, 10, 10),
+    rate=60.,
+    unit='',
 )
 
 fret = FRET(
