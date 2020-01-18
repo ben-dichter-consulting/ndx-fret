@@ -1,4 +1,4 @@
-from pynwb.spec import NWBNamespaceBuilder, NWBGroupSpec, export_spec
+from pynwb.spec import NWBNamespaceBuilder, NWBGroupSpec, NWBAttributeSpec, NWBLinkSpec, NWBDatasetSpec, export_spec
 import os
 
 def main():
@@ -9,31 +9,62 @@ def main():
                                      contact='ben.dichter@gmail.com')
 
     ns_builder.include_type('NWBDataInterface', namespace='core')
+    ns_builder.include_type('NWBContainer', namespace='core')
     ns_builder.include_type('ImageSeries', namespace='core')
     ns_builder.include_type('OpticalChannel', namespace='core')
 
+    # Define FRETSeries, type that stores Donor/Acceptor specific information
+    FRETSeries = NWBGroupSpec(
+        neurodata_type_def='FRETSeries',
+        neurodata_type_inc='NWBContainer',
+        doc='Donor/Acceptor specific information.',
+        attributes=[
+            NWBAttributeSpec(
+                name='fluorophore',
+                doc='Fluorophore name.',
+                dtype='text',
+                shape=None,
+            ),
+            NWBAttributeSpec(
+                name='emission_lambda',
+                doc='Emission wavelength (in nm).',
+                dtype='float',
+                shape=None,
+            )
+        ],
+        groups=[
+            NWBGroupSpec(
+                name='optical_channel',
+                doc='Group storing channel specific data',
+                neurodata_type_inc='OpticalChannel',
+            ),
+        ],
+        datasets=[
+            NWBDatasetSpec(
+                name='data',
+                doc='Fluorescence data.',
+                neurodata_type_inc='ImageSeries',
+            ),
+        ],
+        links=[
+            NWBLinkSpec(
+                name='device',
+                doc='The device that was used to record.',
+                target_type='Device',
+            )
+        ],
+    )
+
+    # Defines FRET, DataInterface that holds metadata and data for FRET experiments
     FRET = NWBGroupSpec(
         doc='type for storing time-varying FRET data',
         neurodata_type_def='FRET',
         neurodata_type_inc='NWBDataInterface',
     )
-
     FRET.add_attribute(
         name='excitation_lambda',
         doc='Excitation wavelength in nm.',
         dtype='float',
-        shape=None,
-    )
-    FRET.add_attribute(
-        name='fluorophore_donor',
-        doc='Fluorophore of donor',
-        dtype='text',
-        shape=None,
-    )
-    FRET.add_attribute(
-        name='fluorophore_acceptor',
-        doc='Fluorophore of acceptor',
-        dtype='text',
         shape=None,
     )
     FRET.add_attribute(
@@ -43,41 +74,18 @@ def main():
         shape=None,
         required=False,
     )
-
     FRET.add_group(
-        name='data_donor',
-        doc='Fluorescence data from donor.',
-        neurodata_type_inc='ImageSeries',
-        quantity=1
+        name='donor',
+        doc='Group storing donor data',
+        neurodata_type_inc='FRETSeries',
     )
     FRET.add_group(
-        name='data_acceptor',
-        doc='Fluorescence data from acceptor.',
-        neurodata_type_inc='ImageSeries',
-        quantity=1
+        name='acceptor',
+        doc='Group storing acceptor data',
+        neurodata_type_inc='FRETSeries',
     )
 
-    FRET.add_group(
-        name='optical_channel_donor',
-        doc='Group storing channel specific data',
-        neurodata_type_inc='OpticalChannel',
-        quantity='?'
-    )
-    FRET.add_group(
-        name='optical_channel_acceptor',
-        doc='Group storing channel specific data',
-        neurodata_type_inc='OpticalChannel',
-        quantity='?'
-    )
-
-    FRET.add_link(
-        name='device',
-        doc='The device that was used to record.',
-        target_type='Device',
-    )
-
-
-    new_data_types = [FRET]
+    new_data_types = [FRET, FRETSeries]
 
     # export the spec to yaml files in the spec folder
     output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'spec'))

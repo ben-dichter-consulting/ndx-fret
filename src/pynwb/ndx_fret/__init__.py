@@ -9,4 +9,5 @@ ns_path = os.path.join(here, 'spec', name + '.namespace.yaml')
 
 load_namespaces(ns_path)
 
+FRETSeries = get_class('FRETSeries', name)
 FRET = get_class('FRET', name)

@@ -6,31 +6,35 @@ groups:
   - name: excitation_lambda
     dtype: float
     doc: Excitation wavelength in nm.
-  - name: fluorophore_donor
-    dtype: text
-    doc: Fluorophore of donor
-  - name: fluorophore_acceptor
-    dtype: text
-    doc: Fluorophore of acceptor
   - name: location
     dtype: text
     doc: Location of imaging field.
     required: false
   groups:
-  - name: data_donor
+  - name: donor
+    neurodata_type_inc: FRETSeries
+    doc: Group storing donor data
+  - name: acceptor
+    neurodata_type_inc: FRETSeries
+    doc: Group storing acceptor data
+- neurodata_type_def: FRETSeries
+  neurodata_type_inc: NWBContainer
+  doc: Donor/Acceptor specific information.
+  attributes:
+  - name: fluorophore
+    dtype: text
+    doc: Fluorophore name.
+  - name: emission_lambda
+    dtype: float
+    doc: Emission wavelength (in nm).
+  datasets:
+  - name: data
     neurodata_type_inc: ImageSeries
-    doc: Fluorescence data from donor.
-  - name: data_acceptor
-    neurodata_type_inc: ImageSeries
-    doc: Fluorescence data from acceptor.
-  - name: optical_channel_donor
+    doc: Fluorescence data.
+  groups:
+  - name: optical_channel
     neurodata_type_inc: OpticalChannel
     doc: Group storing channel specific data
-    quantity: '?'
-  - name: optical_channel_acceptor
-    neurodata_type_inc: OpticalChannel
-    doc: Group storing channel specific data
-    quantity: '?'
   links:
   - name: device
     target_type: Device

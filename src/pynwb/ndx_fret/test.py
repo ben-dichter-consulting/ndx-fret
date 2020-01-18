@@ -2,7 +2,7 @@ from pynwb import NWBFile, NWBHDF5IO, ProcessingModule
 from pynwb.device import Device
 from pynwb.ophys import OpticalChannel
 from pynwb.image import ImageSeries
-from ndx_fret import FRET
+from ndx_fret import FRET, FRETSeries
 
 from datetime import datetime
 import numpy as np
@@ -40,6 +40,15 @@ data_donor = ImageSeries(
     rate=60.,
     unit='',
 )
+fs_d = FRETSeries(
+    name='FRETSeries_donor',
+    fluorophore='mCitrine',
+    optical_channel=opt_ch_d,
+    device=device,
+    data=data_donor,
+    emission_lambda=0.0
+)
+
 data_acceptor = ImageSeries(
     name='ImageSeries_acceptor',
     description='',
@@ -47,19 +56,22 @@ data_acceptor = ImageSeries(
     rate=60.,
     unit='',
 )
+fs_a = FRETSeries(
+    name='FRETSeries_acceptor',
+    fluorophore='mKate2',
+    optical_channel=opt_ch_a,
+    device=device,
+    data=data_acceptor,
+    emission_lambda=0.0
+)
 
 fret = FRET(
     name='FRET',
     excitation_lambda=482.,
-    device=device,
-    optical_channel_donor=opt_ch_d,
-    optical_channel_acceptor=opt_ch_a,
-    fluorophore_donor='mCitrine',
-    fluorophore_acceptor='mKate2',
-    data_donor=data_donor,
-    data_acceptor=data_acceptor,
+    donor=fs_d,
+    acceptor=fs_a
 )
-ophys_module.add(fret)
+nwb.add_acquisition(fret)
 print(nwb)
 
 # Write nwb file
