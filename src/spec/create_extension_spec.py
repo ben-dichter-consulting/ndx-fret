@@ -16,43 +16,31 @@ def main():
     # Define FRETSeries, type that stores Donor/Acceptor specific information
     FRETSeries = NWBGroupSpec(
         neurodata_type_def='FRETSeries',
-        neurodata_type_inc='NWBContainer',
+        neurodata_type_inc='ImageSeries',
         doc='Donor/Acceptor specific information.',
-        attributes=[
-            NWBAttributeSpec(
-                name='fluorophore',
-                doc='Fluorophore name.',
-                dtype='text',
-                shape=None,
-            ),
-            NWBAttributeSpec(
-                name='emission_lambda',
-                doc='Emission wavelength (in nm).',
-                dtype='float',
-                shape=None,
-            )
-        ],
-        groups=[
-            NWBGroupSpec(
-                name='optical_channel',
-                doc='Group storing channel specific data',
-                neurodata_type_inc='OpticalChannel',
-            ),
-        ],
-        datasets=[
-            NWBDatasetSpec(
-                name='data',
-                doc='Fluorescence data.',
-                neurodata_type_inc='ImageSeries',
-            ),
-        ],
-        links=[
-            NWBLinkSpec(
-                name='device',
-                doc='The device that was used to record.',
-                target_type='Device',
-            )
-        ],
+    )
+
+    FRETSeries.add_attribute(
+        name='fluorophore',
+        doc='Fluorophore name.',
+        dtype='text',
+        shape=None,
+    )
+    FRETSeries.add_attribute(
+        name='emission_lambda',
+        doc='Emission wavelength (in nm).',
+        dtype='float',
+        shape=None,
+    )
+    FRETSeries.add_group(
+        name='optical_channel',
+        doc='Group storing channel specific data',
+        neurodata_type_inc='OpticalChannel',
+    )
+    FRETSeries.add_link(
+        name='device',
+        doc='The device that was used to record.',
+        target_type='Device',
     )
 
     # Defines FRET, DataInterface that holds metadata and data for FRET experiments
@@ -61,6 +49,7 @@ def main():
         neurodata_type_def='FRET',
         neurodata_type_inc='NWBDataInterface',
     )
+    
     FRET.add_attribute(
         name='excitation_lambda',
         doc='Excitation wavelength in nm.',

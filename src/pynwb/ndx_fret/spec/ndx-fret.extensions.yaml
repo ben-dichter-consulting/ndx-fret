@@ -18,7 +18,7 @@ groups:
     neurodata_type_inc: FRETSeries
     doc: Group storing acceptor data
 - neurodata_type_def: FRETSeries
-  neurodata_type_inc: NWBContainer
+  neurodata_type_inc: ImageSeries
   doc: Donor/Acceptor specific information.
   attributes:
   - name: fluorophore
@@ -27,10 +27,6 @@ groups:
   - name: emission_lambda
     dtype: float
     doc: Emission wavelength (in nm).
-  datasets:
-  - name: data
-    neurodata_type_inc: ImageSeries
-    doc: Fluorescence data.
   groups:
   - name: optical_channel
     neurodata_type_inc: OpticalChannel
