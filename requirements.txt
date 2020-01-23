@@ -1,2 +1,2 @@
 pynwb
-nwb_docutils
+hdmf_docutils
