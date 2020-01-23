@@ -1,4 +1,4 @@
-from pynwb import NWBFile, NWBHDF5IO, ProcessingModule
+from pynwb import NWBFile, NWBHDF5IO
 from pynwb.device import Device
 from pynwb.ophys import OpticalChannel
 from ndx_fret import FRET, FRETSeries
@@ -11,13 +11,6 @@ nwb = NWBFile('session_description', 'identifier', datetime.now().astimezone())
 # Create and add device
 device = Device(name='Device')
 nwb.add_device(device)
-
-# Ophys processing module
-ophys_module = ProcessingModule(
-    name='Ophys',
-    description='contains optical physiology processed data.',
-)
-nwb.add_processing_module(ophys_module)
 
 # Create optical channels
 opt_ch_d = OpticalChannel(
