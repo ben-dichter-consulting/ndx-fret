@@ -9,7 +9,7 @@ with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup_args = {
     'name': 'ndx-fret',
-    'version': '0.0.2',
+    'version': '0.1.0',
     'description': 'FRET',
     'long_description': long_description,
     'long_description_content_type': 'text/markdown',
