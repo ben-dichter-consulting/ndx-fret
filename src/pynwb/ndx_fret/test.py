@@ -16,12 +16,12 @@ nwb.add_device(device)
 opt_ch_d = OpticalChannel(
     name='optical_channel',
     description='optical_channel_description',
-    emission_lambda=450.
+    emission_lambda=529.
 )
 opt_ch_a = OpticalChannel(
     name='optical_channel',
     description='optical_channel_description',
-    emission_lambda=500.
+    emission_lambda=633.
 )
 
 # Create FRET
@@ -30,22 +30,18 @@ fs_d = FRETSeries(
     fluorophore='mCitrine',
     optical_channel=opt_ch_d,
     device=device,
-    emission_lambda=0.0,
-    description='fret_description',
+    description='description of donor series',
     data=np.random.randn(100, 10, 10),
     rate=200.,
-    unit='fret_unit',
 )
 fs_a = FRETSeries(
     name='acceptor',
     fluorophore='mKate2',
     optical_channel=opt_ch_a,
     device=device,
-    emission_lambda=0.0,
-    description='fret_description',
+    description='description of acceptor series',
     data=np.random.randn(100, 10, 10),
     rate=200.,
-    unit='fret_unit',
 )
 
 fret = FRET(

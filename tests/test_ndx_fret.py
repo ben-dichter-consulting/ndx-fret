@@ -21,13 +21,13 @@ class FRETTest(unittest.TestCase):
         # Create optical channels
         opt_ch_d = OpticalChannel(
             name='optical_channel',
-            description='',
-            emission_lambda=450.
+            description='optical_channel_description',
+            emission_lambda=529.
         )
         opt_ch_a = OpticalChannel(
             name='optical_channel',
-            description='',
-            emission_lambda=500.
+            description='optical_channel_description',
+            emission_lambda=633.
         )
 
         # Create FRET
@@ -36,22 +36,18 @@ class FRETTest(unittest.TestCase):
             fluorophore='mCitrine',
             optical_channel=opt_ch_d,
             device=device,
-            emission_lambda=0.0,
-            description='',
-            data=np.random.randn(20, 5, 5),
-            rate=60.,
-            unit='',
+            description='description of donor series',
+            data=np.random.randn(100, 10, 10),
+            rate=200.,
         )
         fs_a = FRETSeries(
             name='acceptor',
             fluorophore='mKate2',
             optical_channel=opt_ch_a,
             device=device,
-            emission_lambda=0.0,
-            description='',
-            data=np.random.randn(20, 5, 5),
-            rate=60.,
-            unit='',
+            description='description of acceptor series',
+            data=np.random.randn(100, 10, 10),
+            rate=200.,
         )
 
         fret = FRET(
@@ -69,8 +65,5 @@ class FRETTest(unittest.TestCase):
 
         with NWBHDF5IO(filename, mode='r') as io:
             io.read()
-
-        #assert(all(cs.find_compartments(0, [1, 3]) == [1, 3]))
-        #assert(all(cs.find_compartments(1) == 5))
 
         os.remove(filename)
