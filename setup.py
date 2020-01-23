@@ -1,17 +1,21 @@
 # -*- coding: utf-8 -*-
-
-import os
-
 from setuptools import setup, find_packages
 from shutil import copy2
+import os
+
+here = os.path.abspath(os.path.dirname(__file__))
+with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 setup_args = {
     'name': 'ndx-fret',
-    'version': '0.0.1',
+    'version': '0.0.2',
     'description': 'FRET',
+    'long_description': long_description,
+    'long_description_content_type': 'text/markdown',
     'author': 'Luiz Tauffer and Ben Dichter',
     'author_email': 'ben.dichter@gmail.com',
-    'url': '',
+    'url': 'https://github.com/ben-dichter-consulting/ndx-fret',
     'license': '',
     'install_requires': ['pynwb'],
     'packages': find_packages('src/pynwb'),
