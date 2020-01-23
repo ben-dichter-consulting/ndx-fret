@@ -1,15 +1,14 @@
-from pynwb.spec import NWBNamespaceBuilder, NWBGroupSpec, NWBAttributeSpec, NWBLinkSpec, NWBDatasetSpec, export_spec
+from pynwb.spec import NWBNamespaceBuilder, NWBGroupSpec, export_spec
 import os
 
 def main():
     ns_builder = NWBNamespaceBuilder(doc='type for storing time-varying FRET data',
                                      name='ndx-fret',
-                                     version='0.1.0',
+                                     version='0.1.1',
                                      author='Luiz Tauffer and Ben Dichter',
                                      contact='ben.dichter@gmail.com')
 
     ns_builder.include_type('NWBDataInterface', namespace='core')
-    ns_builder.include_type('NWBContainer', namespace='core')
     ns_builder.include_type('ImageSeries', namespace='core')
     ns_builder.include_type('OpticalChannel', namespace='core')
 
@@ -24,12 +23,6 @@ def main():
         name='fluorophore',
         doc='Fluorophore name.',
         dtype='text',
-        shape=None,
-    )
-    FRETSeries.add_attribute(
-        name='emission_lambda',
-        doc='Emission wavelength (in nm).',
-        dtype='float',
         shape=None,
     )
     FRETSeries.add_group(
