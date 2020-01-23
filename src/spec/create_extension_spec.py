@@ -4,7 +4,7 @@ import os
 def main():
     ns_builder = NWBNamespaceBuilder(doc='type for storing time-varying FRET data',
                                      name='ndx-fret',
-                                     version='0.0.1',
+                                     version='0.1.0',
                                      author='Luiz Tauffer and Ben Dichter',
                                      contact='ben.dichter@gmail.com')
 
@@ -49,7 +49,7 @@ def main():
         neurodata_type_def='FRET',
         neurodata_type_inc='NWBDataInterface',
     )
-    
+
     FRET.add_attribute(
         name='excitation_lambda',
         doc='Excitation wavelength in nm.',
