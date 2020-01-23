@@ -5,8 +5,8 @@ def main():
     ns_builder = NWBNamespaceBuilder(doc='type for storing time-varying FRET data',
                                      name='ndx-fret',
                                      version='0.1.1',
-                                     author='Luiz Tauffer and Ben Dichter',
-                                     contact='ben.dichter@gmail.com')
+                                     author=['Luiz Tauffer', 'Ben Dichter'],
+                                     contact=['luiz@taufferconsulting.com', 'ben.dichter@gmail.com'])
 
     ns_builder.include_type('NWBDataInterface', namespace='core')
     ns_builder.include_type('ImageSeries', namespace='core')

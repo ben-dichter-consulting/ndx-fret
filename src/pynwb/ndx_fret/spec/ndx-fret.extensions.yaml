@@ -24,9 +24,6 @@ groups:
   - name: fluorophore
     dtype: text
     doc: Fluorophore name.
-  - name: emission_lambda
-    dtype: float
-    doc: Emission wavelength (in nm).
   groups:
   - name: optical_channel
     neurodata_type_inc: OpticalChannel
