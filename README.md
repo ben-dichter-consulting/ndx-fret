@@ -5,7 +5,7 @@ NWB extension for storing Fluorescence Resonance Energy Transfer (FRET) experime
 A collaboration with [Jaeger Lab](https://scholarblogs.emory.edu/jaegerlab/), [Emory University](https://www.emory.edu/home/index.html) and [The Kavli Foundation](https://www.kavlifoundation.org/).
 
 <p align="center">
-<img src="media/FRET_schematic.png" width="500">
+<img src="media/FRET_schematic.png" width="400">
 </p>
 
 ### Python Installation
