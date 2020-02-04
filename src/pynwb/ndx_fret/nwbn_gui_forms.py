@@ -10,20 +10,16 @@ class GroupFRET(BasicFormCollapsible):
     def fields_info_update(self):
         """Updates fields info with specific fields from the inheriting class."""
         specific_fields = [
-            {
-            'name': 'donor',
-            'type': 'group',
-            'class': 'FRETSeries',
-            'required': True,
-            'doc': 'Group storing donor data'
-            },
-            {
-            'name': 'acceptor',
-            'type': 'group',
-            'class': 'FRETSeries',
-            'required': True,
-            'doc': 'Group storing acceptor data'
-            }
+            {'name': 'donor',
+             'type': 'group',
+             'class': 'FRETSeries',
+             'required': True,
+             'doc': 'Group storing donor data'},
+            {'name': 'acceptor',
+             'type': 'group',
+             'class': 'FRETSeries',
+             'required': True,
+             'doc': 'Group storing acceptor data'}
         ]
         self.fields_info.extend(specific_fields)
 
@@ -36,19 +32,15 @@ class GroupFRETSeries(BasicFormFixed):
     def fields_info_update(self):
         """Updates fields info with specific fields from the inheriting class."""
         specific_fields = [
-            {
-            'name': 'device',
-            'type': 'link',
-            'class': 'Device',
-            'required': True,
-            'doc': 'The device that was used to record'
-            },
-            {
-            'name': 'optical_channel',
-            'type': 'group',
-            'class': 'OpticalChannel',
-            'required': True,
-            'doc': 'One of possibly many groups storing channels pecific data'
-            }
+            {'name': 'device',
+             'type': 'link',
+             'class': 'Device',
+             'required': True,
+             'doc': 'The device that was used to record'},
+            {'name': 'optical_channel',
+             'type': 'group',
+             'class': 'OpticalChannel',
+             'required': True,
+             'doc': 'One of possibly many groups storing channels pecific data'}
         ]
         self.fields_info.extend(specific_fields)
