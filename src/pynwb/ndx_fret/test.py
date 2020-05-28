@@ -33,6 +33,7 @@ fs_d = FRETSeries(
     description='description of donor series',
     data=np.random.randn(100, 10, 10),
     rate=200.,
+    unit='intensity'
 )
 fs_a = FRETSeries(
     name='acceptor',
@@ -42,6 +43,7 @@ fs_a = FRETSeries(
     description='description of acceptor series',
     data=np.random.randn(100, 10, 10),
     rate=200.,
+    unit='intensity'
 )
 
 fret = FRET(
