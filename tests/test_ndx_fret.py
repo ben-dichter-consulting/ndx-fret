@@ -39,6 +39,7 @@ class FRETTest(unittest.TestCase):
             description='description of donor series',
             data=np.random.randn(100, 10, 10),
             rate=200.,
+            unit='intensity'
         )
         fs_a = FRETSeries(
             name='acceptor',
@@ -48,6 +49,7 @@ class FRETTest(unittest.TestCase):
             description='description of acceptor series',
             data=np.random.randn(100, 10, 10),
             rate=200.,
+            unit='intensity'
         )
 
         fret = FRET(
