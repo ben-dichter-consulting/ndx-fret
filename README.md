@@ -77,7 +77,7 @@ with NWBHDF5IO('test_fret.nwb', 'w') as io:
     print('NWB file written')
 
 # Read nwb file and check its content
-with NWBHDF5IO('test_fret.nwb', 'r', load_namespaces=True) as io:
+with NWBHDF5IO('test_fret.nwb', 'r') as io:
     nwb = io.read()
     print(nwb)
 ```
