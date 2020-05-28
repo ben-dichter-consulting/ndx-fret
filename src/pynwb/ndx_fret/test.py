@@ -33,7 +33,7 @@ fs_d = FRETSeries(
     description='description of donor series',
     data=np.random.randn(100, 10, 10),
     rate=200.,
-    unit='intensity'
+    unit='no unit'
 )
 fs_a = FRETSeries(
     name='acceptor',
@@ -43,7 +43,7 @@ fs_a = FRETSeries(
     description='description of acceptor series',
     data=np.random.randn(100, 10, 10),
     rate=200.,
-    unit='intensity'
+    unit='no unit'
 )
 
 fret = FRET(
@@ -61,6 +61,6 @@ with NWBHDF5IO('test_fret.nwb', 'w') as io:
     print('NWB file written')
 
 # Read nwb file and check its content
-with NWBHDF5IO('test_fret.nwb', 'r') as io:
+with NWBHDF5IO('test_fret.nwb', 'r', load_namespaces=True) as io:
     nwb = io.read()
     print(nwb)

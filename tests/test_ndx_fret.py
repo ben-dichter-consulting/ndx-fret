@@ -39,7 +39,7 @@ class FRETTest(unittest.TestCase):
             description='description of donor series',
             data=np.random.randn(100, 10, 10),
             rate=200.,
-            unit='intensity'
+            unit='no unit'
         )
         fs_a = FRETSeries(
             name='acceptor',
@@ -49,7 +49,7 @@ class FRETTest(unittest.TestCase):
             description='description of acceptor series',
             data=np.random.randn(100, 10, 10),
             rate=200.,
-            unit='intensity'
+            unit='no unit'
         )
 
         fret = FRET(
@@ -65,7 +65,7 @@ class FRETTest(unittest.TestCase):
         with NWBHDF5IO(filename, 'w') as io:
             io.write(self.nwbfile)
 
-        with NWBHDF5IO(filename, mode='r') as io:
+        with NWBHDF5IO(filename, mode='r', load_namespaces=True) as io:
             io.read()
 
         os.remove(filename)
