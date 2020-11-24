@@ -12,6 +12,7 @@ def main():
     ns_builder.include_type('NWBDataInterface', namespace='core')
     ns_builder.include_type('ImageSeries', namespace='core')
     ns_builder.include_type('OpticalChannel', namespace='core')
+    ns_builder.include_type('Device', namespace='core')
 
     # Define FRETSeries, type that stores Donor/Acceptor specific information
     FRETSeries = NWBGroupSpec(

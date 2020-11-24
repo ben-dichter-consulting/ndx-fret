@@ -13,5 +13,6 @@ namespaces:
     - NWBDataInterface
     - ImageSeries
     - OpticalChannel
+    - Device
   - source: ndx-fret.extensions.yaml
   version: 0.2.0
