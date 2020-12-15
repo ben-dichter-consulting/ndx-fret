@@ -15,4 +15,4 @@ namespaces:
     - OpticalChannel
     - Device
   - source: ndx-fret.extensions.yaml
-  version: 0.2.0
+  version: 0.2.1
